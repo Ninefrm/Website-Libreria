@@ -12,57 +12,65 @@ try{
 }catch(PDOException $e){
     echo "Connection failed: " . $e->getMessage();
 }
+$libro = $conn -> prepare("
+	SELECT * FROM libro WHERE activo = 1");
+//Libro
+$libro ->execute();
+$libro = $libro ->fetchAll();
 ?>
-<html>
-<body>
-
 <?php include 'Visual/Plantilla/Header.php'; ?>
+<div class="container">
 
-<table>
-    <thead>
-    <tr>
-        <th class="card blue-grey darken-1">TOP #</th>
-    </tr>
-    </thead>
-    <tbody>
-    <div class="container">
-        <td>
-            <div class="carousel">
-                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-                <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
-            </div>
-        </td>
+    <style>
+        div p {
+            background-color: rgba(255,255,255,.8);
+            display: block;
+            position: absolute;
+            bottom: -55%;
+            left: 0;
+            padding: 0px;
+            width: 100%;
+        }
+    </style>
 
-    </div>
-    </tbody>
-</table>
-
-<table>
-    <thead>
-    <tr>
-        <th class="card blue-grey darken-1">TOP #</th>
-    </tr>
-    </thead>
-    <tbody>
-    <td>
-        <div class="container">
-            <div class="carousel">
-                <a class="carousel-item" href="#one!"><img src="https://lorempixel.com/250/250/nature/1"></a>
-                <a class="carousel-item" href="#two!"><img src="https://lorempixel.com/250/250/nature/2"></a>
-                <a class="carousel-item" href="#three!"><img src="https://lorempixel.com/250/250/nature/3"></a>
-                <a class="carousel-item" href="#four!"><img src="https://lorempixel.com/250/250/nature/4"></a>
-                <a class="carousel-item" href="#five!"><img src="https://lorempixel.com/250/250/nature/5"></a>
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title" align='center'>Top más vendidos</span>
             </div>
         </div>
-    </td>
-    </tbody>
-</table>
+    </div>
+    <article>
+        <div class="carousel">
+            <?php foreach ($libro as $Sql): ?>
+                <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
+            <?php endforeach; ?>
+        </div>
+    </article>
+
+    <div class="col s12 m6">
+        <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+                <span class="card-title" align='center'>Top más nuevos</span>
+            </div>
+            <article title="Top #1">
+                <div class="carousel">
+                    <?php foreach ($libro as $Sql): ?>
+                        <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
+                    <?php endforeach; ?>
+                </div>
+            </article>
+        </div>
+    </div>
+
+</div>
+
+
+
 
 
 </body>
+
 <?php include 'Visual/Plantilla/PieDePagina.php'; ?>
 </html>
 

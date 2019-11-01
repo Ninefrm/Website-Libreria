@@ -12,11 +12,6 @@
 <form action="SubirProducto.php" method="post" name="mainform" enctype="multipart/form-data">
     <table width="500" border="0" cellpadding="5" cellspacing="5">
         <tr>
-            <th>Your Name</th>
-            <td><input name="nombre" type="text"></td>
-        </tr>
-        <tr>
-        <tr>
             <th>Your Email</th>
             <td><input name="nombre_libro" type="text"></td>
         </tr>
@@ -24,7 +19,14 @@
             <th>To Email</th>
             <td><input name="autor" type="text"></td>
         </tr>
-
+        <tr>
+            <th>To Email</th>
+            <td><input name="sinopsis" type="text"></td>
+        </tr>
+        <tr>
+            <th>To Email</th>
+            <td><input name="costo" type="text"></td>
+        </tr>
         <tr>
             <th>Subject</th>
             <td><input name="ano_de_publicacion" type="text"></td>

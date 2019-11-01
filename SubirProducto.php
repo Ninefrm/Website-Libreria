@@ -10,9 +10,10 @@ $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 //
 
 //POST
-$nombre = $_POST['nombre'];
 $nombre_libro = $_POST['nombre_libro'];
 $autor = $_POST['autor'];
+$sinopsis = $_POST['sinopsis'];
+$costo = $_POST['costo'];
 $ano_de_publicacion = $_POST['ano_de_publicacion'];
 $pais_de_publicacion = $_POST['pais_de_publicacion'];
 $editorial = $_POST['editorial'];
@@ -69,12 +70,14 @@ if (file($tmpName)) {
             //
             $my_Insert_Statement = $my_Db_Connection->prepare(
                 "INSERT INTO libro VALUES
-(null,:nombre_libro,:autor,:ano_de_publicacion,:pais_de_publicacion,:editorial,:numero_de_edicion,:ano_de_edicion,:numero_de_paginas,:genero,:cantidad,:calificacion,
+(null,:nombre_libro,:autor, :sinopsis, :costo,:ano_de_publicacion,:pais_de_publicacion,:editorial,:numero_de_edicion,:ano_de_edicion,:numero_de_paginas,:genero,:cantidad,:calificacion,
                 :ISBN,:vendidos,:imagen,'1')");
 
             $my_Insert_Statement ->execute(array(
                 ':nombre_libro'=> $nombre_libro,
                 ':autor'=> $autor,
+                ':sinopsis'=> $sinopsis,
+                ':costo'=> $costo,
                 ':ano_de_publicacion'=> $ano_de_publicacion,
                 ':pais_de_publicacion'=> $pais_de_publicacion,
                 ':editorial'=> $editorial,
