@@ -1,10 +1,29 @@
 <?php
+//Servidor
+$servername = "198.91.81.7";
+$username = "ninefrmx_root";
+$password = "Samuel20";
+$mydb = "ninefrmx_libreria";
 
-$to = $_POST['toEmail'];
-$fromEmail = $_POST['fieldFormEmail'];
-$fromName = $_POST['fieldFormName'];
-$subject = $_POST['fieldSubject'];
-$message = $_POST['fieldDescription'];
+$sql = "mysql:host=$servername;dbname=$mydb;";
+$dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
+//
+
+//POST
+$nombre = $_POST['nombre'];
+$nombre_libro = $_POST['nombre_libro'];
+$autor = $_POST['autor'];
+$ano_de_publicacion = $_POST['ano_de_publicacion'];
+$pais_de_publicacion = $_POST['pais_de_publicacion'];
+$editorial = $_POST['editorial'];
+$numero_de_edicion = $_POST['numero_de_edicion'];
+$ano_de_edicion = $_POST['ano_de_edicion'];
+$numero_de_paginas = $_POST['numero_de_paginas'];
+$genero = $_POST['genero'];
+$cantidad = $_POST['cantidad'];
+$calificacion = $_POST['calificacion'];
+$ISBN = $_POST['ISBN'];
+$vendidos = $_POST['vendidos'];
 
 /* GET File Variables */
 $tmpName = $_FILES['attachment']['tmp_name'];
@@ -14,9 +33,6 @@ $target_dir = "Upload/Libros/";
 $target_file = $target_dir . $fileName;
 $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-/* Start of headers */
-$headers = "From: $fromName";
 
 if (file($tmpName)) {
     //EXISTE?
@@ -43,6 +59,35 @@ if (file($tmpName)) {
             echo '<script language="javascript">';
             echo 'alert("The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.")';
             echo '</script>';
+            //Conexión
+            try {
+                $my_Db_Connection = new PDO($sql, $username, $password, $dsn_Options);
+                echo "Connected successfully";
+            } catch (PDOException $error) {
+                echo 'Connection error: ' . $error->getMessage();
+            }
+            //
+            $my_Insert_Statement = $my_Db_Connection->prepare(
+                "INSERT INTO libro VALUES
+(null,:nombre_libro,:autor,:ano_de_publicacion,:pais_de_publicacion,:editorial,:numero_de_edicion,:ano_de_edicion,:numero_de_paginas,:genero,:cantidad,:calificacion,
+                :ISBN,:vendidos,:imagen,'1')");
+
+            $my_Insert_Statement ->execute(array(
+                ':nombre_libro'=> $nombre_libro,
+                ':autor'=> $autor,
+                ':ano_de_publicacion'=> $ano_de_publicacion,
+                ':pais_de_publicacion'=> $pais_de_publicacion,
+                ':editorial'=> $editorial,
+                ':numero_de_edicion'=> $numero_de_edicion,
+                ':ano_de_edicion'=> $ano_de_edicion,
+                ':numero_de_paginas'=> $numero_de_paginas,
+                ':genero'=> $genero,
+                ':cantidad'=> $cantidad,
+                ':calificacion'=> $calificacion,
+                ':ISBN'=> $ISBN,
+                ':vendidos'=> $vendidos,
+                ':imagen'=>$fileName
+            ));
 
         } else {
             echo '<script language="javascript">';

@@ -13,25 +13,61 @@
     <table width="500" border="0" cellpadding="5" cellspacing="5">
         <tr>
             <th>Your Name</th>
-            <td><input name="fieldFormName" type="text"></td>
+            <td><input name="nombre" type="text"></td>
         </tr>
         <tr>
         <tr>
             <th>Your Email</th>
-            <td><input name="fieldFormEmail" type="text"></td>
+            <td><input name="nombre_libro" type="text"></td>
         </tr>
         <tr>
             <th>To Email</th>
-            <td><input name="toEmail" type="text"></td>
+            <td><input name="autor" type="text"></td>
         </tr>
 
         <tr>
             <th>Subject</th>
-            <td><input name="fieldSubject" type="text" id="fieldSubject"></td>
+            <td><input name="ano_de_publicacion" type="text"></td>
         </tr>
         <tr>
-            <th>Comments</th>
-            <td><textarea name="fieldDescription" cols="20" rows="4" id="fieldDescription"></textarea></td>
+            <th>Your Name</th>
+            <td><input name="pais_de_publicacion" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="editorial" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="numero_de_edicion" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="ano_de_edicion" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="numero_de_paginas" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="genero" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="cantidad" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="calificacion" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="ISBN" type="text"></td>
+        </tr>
+        <tr>
+            <th>Your Name</th>
+            <td><input name="vendidos" type="text"></td>
         </tr>
         <tr>
             <th>Attach Your File</th>
