@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="38fc9c1d-9fec-431a-b807-262228f8ec1e" name="Local" url="http://localhost/Website-Libreria/">
-        <fileTransfer port="0" mountedRoot="" accessType="MOUNT" />
+      <webServer id="38fc9c1d-9fec-431a-b807-262228f8ec1e" name="Local" url="http://newhost/Website-Libreria/">
+        <fileTransfer port="0" mountedRoot="A:\wamp64\www" accessType="MOUNT" />
       </webServer>
     </option>
   </component>

@@ -1,17 +1,17 @@
 <?php
-$errores ='';
+$servername = "198.91.81.7";
+$username = "ninefrmx_root";
+$password = "Samuel20";
+$mydb = "ninefrmx_libreria";
+
 try{
-    $conexion = new PDO('mysql:host=ninefrmxlibreria.canjn2ui3buc.us-east-1.rds.amazonaws.com;dbname=libreria','ninefrmx_root','Samuel20');
+    $conn = new PDO("mysql:host=$servername;dbname=$mydb", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    echo "Connected successfully";
 }catch(PDOException $e){
-    echo "Error: ". $e->getMessage();
+    echo "Connection failed: " . $e->getMessage();
 }
-
-$sql = "SHOW TABLES";
-
-$statement = $conexion -> prepare($sql);
-//$statement ->execute(array(':correo'=> $Correo,':password'=> $password));
-$resultado = $statement->fetch();
-
 ?>
 <html>
 <body>
