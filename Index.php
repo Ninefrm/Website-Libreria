@@ -32,7 +32,6 @@ $libro = $libro ->fetchAll();
             width: 100%;
         }
     </style>
-
     <div class="col s12 m6">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
@@ -53,15 +52,15 @@ $libro = $libro ->fetchAll();
             <div class="card-content white-text">
                 <span class="card-title" align='center'>Top más nuevos</span>
             </div>
-            <article title="Top #1">
-                <div class="carousel">
-                    <?php foreach ($libro as $Sql): ?>
-                        <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
-                    <?php endforeach; ?>
-                </div>
-            </article>
         </div>
     </div>
+    <article>
+        <div class="carousel">
+            <?php foreach ($libro as $Sql): ?>
+                <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
+            <?php endforeach; ?>
+        </div>
+    </article>
 
 </div>
 
