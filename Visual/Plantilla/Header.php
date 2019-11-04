@@ -11,6 +11,41 @@ header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>
+<?php
+$servername = "198.91.81.7";
+$username = "ninefrmx_root";
+$password = "Samuel20";
+$mydb = "ninefrmx_libreria";
+
+try{
+    $conn = new PDO("mysql:host=$servername;dbname=$mydb", $username, $password);
+    // set the PDO error mode to exception
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    echo "Connected successfully";
+}catch(PDOException $e){
+    echo "Connection failed: " . $e->getMessage();
+}
+
+if (!empty($_SESSION['id'])){
+    $id_usr = $_SESSION['id'];
+    $carrito = $conn -> prepare("
+	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
+    //Libro
+    $carrito ->execute();
+    $carrito = $carrito ->fetchAll();
+}
+else{
+    $id_usr = "0";
+    $carrito = $conn -> prepare("
+	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
+    //Libro
+    $carrito ->execute();
+    $carrito = $carrito ->fetchAll();
+}
+
+
+
+?>
 <head>
     <meta charset="UTF-8">
     <title>Libreria</title>
@@ -56,66 +91,14 @@ ini_set('display_errors', 1);
         <nav class="nav-extended">
             <div class="nav-wrapper">
                 <a href="Index.php" class="brand-logo">Libreria</a>
+
+
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-
-                    <form action="Buscar.php" method="post" id="mainform">
-                            <div class="input-field col s1">
-                                <i class="material-icons prefix">search</i>
-
-                                <label for="icon_email">Buscar</label>
-                            </div>
-                            <div class="input-field inline">
-                                <input name="busqueda" id="icon_email" type="text" class="validate">
-                                <label for="email_inline">Email</label>
-                                <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
-                            </div>
-
-                        <form action="Buscar.php" method="post" id="mainform">
-                            <button class="btn-small blue" type="submit" form="mainform"><i class="material-icons">search</i></button>
-                        </form>
-                    </form>
-
-
-                    <?php
-                    $servername = "198.91.81.7";
-                    $username = "ninefrmx_root";
-                    $password = "Samuel20";
-                    $mydb = "ninefrmx_libreria";
-
-                    try{
-                        $conn = new PDO("mysql:host=$servername;dbname=$mydb", $username, $password);
-                        // set the PDO error mode to exception
-                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//    echo "Connected successfully";
-                    }catch(PDOException $e){
-                        echo "Connection failed: " . $e->getMessage();
-                    }
-
-                        if (!empty($_SESSION['id'])){
-                            $id_usr = $_SESSION['id'];
-                            $carrito = $conn -> prepare("
-	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
-                            //Libro
-                            $carrito ->execute();
-                            $carrito = $carrito ->fetchAll();
-                        }
-                        else{
-                            $id_usr = "0";
-                            $carrito = $conn -> prepare("
-	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
-                            //Libro
-                            $carrito ->execute();
-                            $carrito = $carrito ->fetchAll();
-                        }
-
-
-
-                    ?>
-
+                    <div class="center left">
                         <?php
                         if (!empty($_SESSION['id'])){
-                            echo $suma = count($carrito) ;
+                            $suma = count($carrito) ;
                             Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
                         ";
                         }else{
@@ -123,10 +106,40 @@ ini_set('display_errors', 1);
                         }
 
                         ?>
+                    </div>
+                    <div class="center right">
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">view_module</i></a></li>
+
+                    </div>
+                    <div class="center">
+                        <form action="Buscar.php" method="post" id="mainform">
+                            <div class="input-field inline">
+                                <input name="busqueda" id="busqueda" type="text" class="validate">
+                                <label for="busqueda">Buscar</label>
+                            </div>
+                            <form action="Buscar.php" method="post" id="mainform">
+                                <!--                            <button class="waves-effect waves-light btn" type="submit" form="mainform"><i class="material-icons left">search</i></button>-->
+                                <button class="btn-floating btn-large waves-effect waves-light blue" type="submit" form="mainform"><i class="material-icons">search</i></button>
+                            </form>
+                        </form>
+                    </div>
+
+
+<!--                        --><?php
+//                        if (!empty($_SESSION['id'])){
+//                            $suma = count($carrito) ;
+//                            Echo "<div class='center right'> <li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li></div>
+//                        ";
+//                        }else{
+//
+//                        }
+//
+//                        ?>
 
 <!--                    <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>-->
 
-                    <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">view_module</i></a></li>
+
+
                 </ul>
             </div>
         </nav>
