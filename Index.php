@@ -1,5 +1,5 @@
 <?php
-$servername = "198.91.81.7";
+$servername = "localhost";
 $username = "ninefrmx_root";
 $password = "Samuel20";
 $mydb = "ninefrmx_libreria";
@@ -12,11 +12,17 @@ try{
 }catch(PDOException $e){
     echo "Connection failed: " . $e->getMessage();
 }
-$libro = $conn -> prepare("
-	SELECT * FROM libro WHERE activo = 1");
+$libroV = $conn -> prepare("
+	SELECT * FROM libro WHERE activo = 1 ORDER BY vendidos");
 //Libro
-$libro ->execute();
-$libro = $libro ->fetchAll();
+$libroV ->execute();
+$libroV = $libroV ->fetchAll();
+
+$libroY = $conn -> prepare("
+	SELECT * FROM libro WHERE activo = 1 ORDER BY ano_de_publicacion");
+//Libro
+$libroY ->execute();
+$libroY = $libroY ->fetchAll();
 ?>
 
 <?php include 'Visual/Plantilla/Header.php'; ?>
@@ -42,7 +48,7 @@ $libro = $libro ->fetchAll();
     </div>
     <article>
         <div class="carousel part1">
-            <?php foreach ($libro as $Sql): ?>
+            <?php foreach ($libroV as $Sql): ?>
                 <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
             <?php endforeach; ?>
         </div>
@@ -57,7 +63,7 @@ $libro = $libro ->fetchAll();
     </div>
     <article>
         <div class="carousel part1">
-            <?php foreach ($libro as $Sql): ?>
+            <?php foreach ($libroY as $Sql): ?>
                 <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
             <?php endforeach; ?>
         </div>

@@ -1,6 +1,6 @@
 <?php
 //Servidor
-$servername = "198.91.81.7";
+$servername = "localhost";
 $username = "ninefrmx_root";
 $password = "Samuel20";
 $mydb = "ninefrmx_libreria";
@@ -31,5 +31,5 @@ $id_libro = $_POST['id_libro'];
 
 ?>
 <script>
-        window.history.back();
+        window.location.replace("Pago.php");
 </script>

@@ -1,6 +1,6 @@
 <?php include 'Visual/Plantilla/Header.php'; ?>
 <?php
-$servername = "198.91.81.7";
+$servername = "localhost";
 $username = "ninefrmx_root";
 $password = "Samuel20";
 $mydb = "ninefrmx_libreria";
@@ -60,7 +60,7 @@ $cantidad = count($carrito);
                 <?php echo "<td> $". $SqlLibro['costo'] ."</td>"; ?>
                 <?php $total = $total + $SqlLibro['costo'];?>
                 <?php echo "<td class='centrar'>"."<a href='VerLibro.php?id=".$SqlLibro['id']."' class='large material-icons'>visibility</a>". "</td>"; ?>
-                <?php echo "<td class='centrar'>"."<a href='EliminarAdministrador.php?id=".$SqlLibro['id']."' class='large material-icons'>delete_forever</a>". "</td>"; ?>
+                <?php echo "<td class='centrar'>"."<a href='NoComprar.php?id=".$SqlLibro['id']."' class='large material-icons'>delete_forever</a>". "</td>"; ?>
             </tr>
             <?php endforeach; ?>
         <?php endforeach; ?>
@@ -139,18 +139,18 @@ $cantidad = count($carrito);
             <div class="input-field col s6">
                 <select name="pago">
                     <option value="" disabled selected>Elegir opción</option>
-                    <option value="1"><?php $str = strtoupper($pago); echo  $str; ?></option>
-                    <option value="2">EFECTIVO</option>
-                    <option value="2">NUEVO</option>
+                    <option value="1">DEFAULT: <?php $str = strtoupper($pago); echo  $str; ?></option>
+                    <option value="EFECTIVO">EFECTIVO</option>
+                    <option value="DEBITO">DEBITO</option>
                 </select>
                 <label>Metodo de Pago</label>
             </div>
             <div class="input-field col s6">
                 <select name="envio">
                     <option value="" disabled selected>Elegir opción</option>
-                    <option value="1">DHL</option>
-                    <option value="2">FEDEX</option>
-                    <option value="2">UP</option>
+                    <option value="DHL">DHL</option>
+                    <option value="FEDEX">FEDEX</option>
+                    <option value="UPS">UPS</option>
                 </select>
                 <label>Metodo de Envio</label>
             </div>

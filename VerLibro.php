@@ -1,7 +1,7 @@
 <html>
 <body>
 <?php
-$servername = "198.91.81.7";
+$servername = "localhost";
 $username = "ninefrmx_root";
 $password = "Samuel20";
 $mydb = "ninefrmx_libreria";

@@ -1,10 +1,4 @@
 
-<?php
-header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
-header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-?>
 <head>
     <meta charset="UTF-8">
     <title>Libreria</title>
@@ -55,7 +49,7 @@ ini_set('display_errors', 1);
                     <li><a href="Busqueda.html"><i class="material-icons">search</i> </a></li>
 
                     <?php
-                    $servername = "198.91.81.7";
+                    $servername = "localhost";
                     $username = "ninefrmx_root";
                     $password = "Samuel20";
                     $mydb = "ninefrmx_libreria";

@@ -12,7 +12,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ?>
 <?php
-$servername = "198.91.81.7";
+$servername = "localhost";
 $username = "ninefrmx_root";
 $password = "Samuel20";
 $mydb = "ninefrmx_libreria";
@@ -73,7 +73,16 @@ else{
     <!--            </div>-->
     <!--		</div>-->
     <ul id="dropdown1" class="dropdown-content">
-                    <li class="divider"></li>
+
+        <?php
+        if($_SESSION['tipo'] == "Administrador"){
+            Echo "<li><a href=\"AgregarLibro.php\" title=\"Agregar Libro\"><i class=\"material-icons\">library_add</i>Agregar Libros</span></div></a></li>
+        ";
+        }
+        ?>
+        <li class="divider"></li>
+        <li><a href="VerCompras.php"><i class="material-icons">store</i>Compras</a></li>
+        <li class="divider"></li>
         <?php
         if (!empty($_SESSION['id'])){
             Echo "<li><a href=\"cerrar.php\" title=\"Cerrar Sesion\"><i class=\"material-icons\">power_settings_new</i>Cerrar Sesion</span></div></a></li>
@@ -112,16 +121,22 @@ else{
 
                     </div>
                     <div class="center">
-                        <form action="Buscar.php" method="post" id="mainform">
-                            <div class="input-field inline">
-                                <input name="busqueda" id="busqueda" type="text" class="validate">
-                                <label for="busqueda">Buscar</label>
-                            </div>
-                            <form action="Buscar.php" method="post" id="mainform">
-                                <!--                            <button class="waves-effect waves-light btn" type="submit" form="mainform"><i class="material-icons left">search</i></button>-->
-                                <button class="btn-floating btn-large waves-effect waves-light blue" type="submit" form="mainform"><i class="material-icons">search</i></button>
-                            </form>
-                        </form>
+                        <?php
+                        if($_SERVER['REQUEST_URI'] == '/Website-Libreria/Buscar.php'){
+
+                         }else{
+                            Echo "<form action=\"Buscar.php\" method=\"post\" id=\"mainform2\">
+                                <div class=\"input-field inline\">
+                                    <input name=\"busqueda\" id=\"busqueda\" type=\"text\" class=\"validate\">
+                                    <label for=\"busqueda\">Buscar</label>
+                                </div>
+                                <form action=\"Buscar.php\" method=\"post\" id=\"mainform2\">
+                                    <button class=\"btn-floating btn-large waves-effect waves-light blue\" type=\"submit\" form=\"mainform\"><i class=\"material-icons\">search</i></button>
+                                </form>
+                            </form>";
+                        }
+                        ?>
+
                     </div>
 
 
@@ -145,8 +160,8 @@ else{
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="Busqueda.html"><i class="material-icons">search</i>Busqueda</a></li>
-
+            <li><a href="Busqueda.php"><i class="material-icons">search</i>Busqueda</a></li>
+            <li><a href="VerCompras.php"><i class="material-icons">store</i>Compras</a></li>
             <?php
             if (!empty($_SESSION['id'])){
                 Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
@@ -170,6 +185,7 @@ else{
     </nav>
     <br><br><br><br>
 </header>
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var instances = M.AutoInit();

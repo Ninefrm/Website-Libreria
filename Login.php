@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     // $contraseña = hash('sha512', $contraseña);
     $errores ='';
 
-    $servername = "198.91.81.7";
+    $servername = "localhost";
     $username = "ninefrmx_root";
     $passwordb = "Samuel20";
     $mydb = "ninefrmx_libreria";

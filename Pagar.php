@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     // $contraseña = hash('sha512', $contraseña);
     $errores ='';
 
-    $servername = "198.91.81.7";
+    $servername = "localhost";
     $username = "ninefrmx_root";
     $passwordb = "Samuel20";
     $mydb = "ninefrmx_libreria";
@@ -44,8 +44,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $cantidad = count($carrito);
 
     foreach ($carrito as $SQLCarrito):
-        $id_libro = $SQLCarrito['id_carro'];
-    endforeach;
+        $id_libro = $SQLCarrito['id_libro'];
+
 
     $guia_de_envio = $metodo_de_envio . $id_cliente . $id_libro;
 
@@ -66,6 +66,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         ':guia_de_envio'=> $guia_de_envio,
         ':metodo_de_pago'=>$pago
     ));
+    endforeach;
     $update = $conn->prepare("UPDATE carro SET activo = '0' WHERE id_cliente = $id_cliente");
     $update->execute();
 
