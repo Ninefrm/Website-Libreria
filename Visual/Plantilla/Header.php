@@ -58,7 +58,24 @@ ini_set('display_errors', 1);
                 <a href="Index.php" class="brand-logo">Libreria</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="Busqueda.html"><i class="material-icons">search</i> </a></li>
+
+                    <form action="Buscar.php" method="post" id="mainform">
+                            <div class="input-field col s1">
+                                <i class="material-icons prefix">search</i>
+
+                                <label for="icon_email">Buscar</label>
+                            </div>
+                            <div class="input-field inline">
+                                <input name="busqueda" id="icon_email" type="text" class="validate">
+                                <label for="email_inline">Email</label>
+                                <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                            </div>
+
+                        <form action="Buscar.php" method="post" id="mainform">
+                            <button class="btn-small blue" type="submit" form="mainform"><i class="material-icons">search</i></button>
+                        </form>
+                    </form>
+
 
                     <?php
                     $servername = "198.91.81.7";
