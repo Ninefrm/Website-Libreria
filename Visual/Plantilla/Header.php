@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php session_start();
+
+
+
 ?>
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
@@ -36,8 +39,17 @@ ini_set('display_errors', 1);
     <!--		</div>-->
     <ul id="dropdown1" class="dropdown-content">
                     <li class="divider"></li>
-        <li><a href="Login.php" title="Iniciar Sesion" class="center-align"><i class="material-icons right">perm_identity</i> Iniciar Sesion </a></li>
-        <li><a href="cerrar.php" title="Cerrar Sesion" class="center-align"><i class="material-icons right">power_settings_new</i> Cerrar Sesion </a></li>
+        <?php
+        if (!empty($_SESSION['id'])){
+            Echo "<li><a href=\"cerrar.php\" title=\"Cerrar Sesion\"><i class=\"material-icons\">power_settings_new</i>Cerrar Sesion</span></div></a></li>
+                        ";
+        }else{
+            Echo "<li><a href=\"Login.php\" title=\"Iniciar Sesion\"><i class=\"material-icons\">perm_identity</i>Iniciar Sesion</a></li>";
+        }
+
+//        ?>
+<!--        <li><a href="Login.php" title="Iniciar Sesion" class="center-align"><i class="material-icons right">perm_identity</i> Iniciar Sesion </a></li>-->
+<!--        <li><a href="cerrar.php" title="Cerrar Sesion" class="center-align"><i class="material-icons right">power_settings_new</i> Cerrar Sesion </a></li>-->
     </ul>
     <nav>
 
@@ -62,18 +74,37 @@ ini_set('display_errors', 1);
                     }catch(PDOException $e){
                         echo "Connection failed: " . $e->getMessage();
                     }
-                    $id_usr = $_SESSION['id'];
-                    $carrito = $conn -> prepare("
+
+                        if (!empty($_SESSION['id'])){
+                            $id_usr = $_SESSION['id'];
+                            $carrito = $conn -> prepare("
 	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
-                    //Libro
-                    $carrito ->execute();
-                    $carrito = $carrito ->fetchAll();
+                            //Libro
+                            $carrito ->execute();
+                            $carrito = $carrito ->fetchAll();
+                        }
+                        else{
+                            $id_usr = "0";
+                            $carrito = $conn -> prepare("
+	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
+                            //Libro
+                            $carrito ->execute();
+                            $carrito = $carrito ->fetchAll();
+                        }
+
+
+
                     ?>
 
                         <?php
-                        echo $suma = count($carrito) ;
-                        Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
+                        if (!empty($_SESSION['id'])){
+                            echo $suma = count($carrito) ;
+                            Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
                         ";
+                        }else{
+
+                        }
+
                         ?>
 
 <!--                    <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>-->
@@ -85,9 +116,25 @@ ini_set('display_errors', 1);
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="Busqueda.html"><i class="material-icons">search</i>Busqueda</a></li>
-            <li><a href="Pago.phpl"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>
-            <li><a href="Login.php" title="Cerrar Sesion"><i class="material-icons">perm_identity</i> Iniciar Sesion </a></li>
-            <li><a href="cerrar.php" title="Cerrar Sesion"><i class="material-icons">power_settings_new</i> Cerrar Sesion </a></li>
+
+            <?php
+            if (!empty($_SESSION['id'])){
+                Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
+                        ";
+            }else{
+
+            }
+
+            ?>
+            <?php
+            if (!empty($_SESSION['id'])){
+                Echo "<li><a href=\"cerrar.php\" title=\"Cerrar Sesion\"><i class=\"material-icons\">power_settings_new</i>Cerrar Sesion</span></div></a></li>
+                        ";
+            }else{
+                Echo "<li><a href=\"Login.php\" title=\"Iniciar Sesion\"><i class=\"material-icons\">perm_identity</i>Iniciar Sesion</a></li>";
+            }
+
+            //        ?>
         </ul>
 
     </nav>

@@ -55,10 +55,10 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     }
     elseif ($resultado_cliente){
         $all = $conn->prepare("SELECT nombre FROM cliente WHERE correo_electronico =:correo_electronico");
-        $all ->execute(array(':correo'=>$correo));
+        $all ->execute(array(':correo_electronico'=>$correo_electronico));
         $nombre = $all->fetchColumn();
         $all = $conn->prepare("SELECT id FROM cliente WHERE correo_electronico =:correo_electronico");
-        $all ->execute(array(':correo'=>$correo));
+        $all ->execute(array(':correo_electronico'=>$correo_electronico));
         $id = $all->fetchColumn();
 
         $_SESSION['correo_electronico'] = $correo_electronico;
