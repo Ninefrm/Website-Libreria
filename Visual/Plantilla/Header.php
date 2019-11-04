@@ -14,7 +14,7 @@ ini_set('display_errors', 1);
 
     <!--    <link rel="stylesheet" href="CSS/Estilos.css">-->
     <link href="https://fonts.googleapis.com/css?family=Amaranth&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="Img/WebIcon.png">
+    <link rel="icon" type="image/png" href="Image/WebIcon.png">
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -41,11 +41,40 @@ ini_set('display_errors', 1);
 
         <nav class="nav-extended">
             <div class="nav-wrapper">
-                <a href="#" class="brand-logo">Libreria</a>
+                <a href="Index.php" class="brand-logo">Libreria</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="Busqueda.html"><i class="material-icons">search</i> </a></li>
-                    <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> </a></li>
+
+                    <?php
+                    $servername = "198.91.81.7";
+                    $username = "ninefrmx_root";
+                    $password = "Samuel20";
+                    $mydb = "ninefrmx_libreria";
+
+                    try{
+                        $conn = new PDO("mysql:host=$servername;dbname=$mydb", $username, $password);
+                        // set the PDO error mode to exception
+                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//    echo "Connected successfully";
+                    }catch(PDOException $e){
+                        echo "Connection failed: " . $e->getMessage();
+                    }
+                    $carrito = $conn -> prepare("
+	SELECT * FROM carro WHERE activo = 1");
+                    //Libro
+                    $carrito ->execute();
+                    $carrito = $carrito ->fetchAll();
+                    ?>
+
+                        <?php
+                        echo $suma = count($carrito) ;
+                        Echo "<li><a href=\"Pago.html\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
+                        ";
+                        ?>
+
+<!--                    <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>-->
+
                     <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="material-icons right">view_module</i></a></li>
                 </ul>
             </div>
@@ -53,7 +82,7 @@ ini_set('display_errors', 1);
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="Busqueda.html"><i class="material-icons">search</i>Busqueda</a></li>
-            <li><a href="Pago.html"><i class="material-icons">shopping_cart</i>Carrito de compras</a></li>
+            <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>
             <li><a href="Login.php" title="Cerrar Sesion"><i class="material-icons">perm_identity</i> Iniciar Sesion </a></li>
             <li><a href="cerrar.php" title="Cerrar Sesion"><i class="material-icons">power_settings_new</i> Cerrar Sesion </a></li>
         </ul>

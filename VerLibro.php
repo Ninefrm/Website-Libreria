@@ -40,7 +40,19 @@ if(!$libro){
                     </div>";
             ?>
         </div>
-        <div class="col s12"><h2 class="mayusculas"><?php echo "<td>". $Sql['nombre_libro']. "</td>"; ?>.</h2></div>
+            <div class="col s6 right">
+                <form action="AgregarCompra.php" method="post" id="mainform">
+                    <td><input type="hidden" name="id_libro" value="<?php echo  $Sql['id']; ?>" type="text"></td>
+                    <button class="waves-effect waves-light btn-small green" type="submit" form="mainform" value="Submit"><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</button>
+                </form>
+
+<!--                <form class="waves-effect waves-light btn-small red" action="foo.php" method="post""><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</form>-->
+            </div>
+            <div class="row">
+                <div class="col s6"><h2 class="mayusculas"><?php
+                        $str = strtoupper($Sql['nombre_libro']);
+                        echo "<td>". $str. "</td>"; ?>.</h2></div>
+            </div>
         <table class="striped">
             <tr>
                 <th>Autor:</th>
@@ -56,70 +68,70 @@ if(!$libro){
             </tr>
         </table>
         <div class="row">
-            <div class="col s1">
+            <div class="col s1 m1 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">attach_money</i>
                     <p class="promo-caption">Costo:</p>
                     <p class="light center">$<?php echo "<td>". $Sql['costo']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">date_range</i>
                     <p class="promo-caption">Año publicacion:</p>
                     <p class="light center"><?php echo "<td>". $Sql['ano_de_publicacion']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s2">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">location_searching</i>
                     <p class="promo-caption">Publicado en:</p>
                     <p class="light center"><?php echo "<td>". $Sql['pais_de_publicacion']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">mode_edit</i>
                     <p class="promo-caption">Edición</p>
                     <p class="light center"><?php echo "<td> #". $Sql['numero_de_edicion']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">date_range</i>
                     <p class="promo-caption">Editado en:</p>
                     <p class="light center"><?php echo "<td>". $Sql['ano_de_edicion']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">filter_none</i>
                     <p class="promo-caption">Paginas:</p>
                     <p class="light center"><?php echo "<td>". $Sql['numero_de_paginas']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">settings</i>
                     <p class="promo-caption">Genero:</p>
                     <p class="light center"><?php echo "<td>". $Sql['genero']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">add_circle_outline</i>
                     <p class="promo-caption">Cantidad:</p>
                     <p class="light center"><?php echo "<td>". $Sql['cantidad']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s1">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">grade</i>
                     <p class="promo-caption">Calificación:</p>
                     <p class="light center"><?php echo "<td>". $Sql['calificacion']. "</td>"; ?></p>
                 </div>
             </div>
-            <div class="col s2">
+            <div class="col s12 m4 l2">
                 <div class="center promo promo-example">
                     <i class="material-icons">code</i>
                     <p class="promo-caption">ISBN:</p>
