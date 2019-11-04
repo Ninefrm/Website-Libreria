@@ -8,7 +8,7 @@ $mydb = "ninefrmx_libreria";
 $sql = "mysql:host=$servername;dbname=$mydb;";
 $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 //
-
+session_start();
 //POST
 $id_libro = $_POST['id_libro'];
 
@@ -20,9 +20,10 @@ $id_libro = $_POST['id_libro'];
         echo 'Connection error: ' . $error->getMessage();
     }
     //
+    $id_usr = $_SESSION['id'];
     $my_Insert_Statement = $my_Db_Connection->prepare(
         "INSERT INTO carro VALUES
-(DEFAULT,:id_libro,DEFAULT)");
+(null,$id_usr,:id_libro,'1')");
 
             $my_Insert_Statement ->execute(array(
                 ':id_libro'=> $id_libro

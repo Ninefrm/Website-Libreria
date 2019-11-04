@@ -5,6 +5,7 @@
             <p>Fonseca Romero, Samuel Maximiliano.</p>
 
             <a class="grey-text text-lighten-4 right" href="#!"><p>SESIÓN: <?php print_r($_SESSION['nombre']) ?></p></a>
+
 </div>
 </div>
 </footer>

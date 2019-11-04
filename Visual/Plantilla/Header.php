@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php session_start();
+?>
 <?php
 header("Cache-Control: no-cache, must-revalidate"); // HTTP/1.1
 header("Expires: Sat, 1 Jul 2000 05:00:00 GMT"); // Fecha en el pasado
@@ -60,8 +62,9 @@ ini_set('display_errors', 1);
                     }catch(PDOException $e){
                         echo "Connection failed: " . $e->getMessage();
                     }
+                    $id_usr = $_SESSION['id'];
                     $carrito = $conn -> prepare("
-	SELECT * FROM carro WHERE activo = 1");
+	SELECT * FROM carro WHERE activo = 1 AND id_cliente = $id_usr");
                     //Libro
                     $carrito ->execute();
                     $carrito = $carrito ->fetchAll();
@@ -69,7 +72,7 @@ ini_set('display_errors', 1);
 
                         <?php
                         echo $suma = count($carrito) ;
-                        Echo "<li><a href=\"Pago.html\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
+                        Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>
                         ";
                         ?>
 
@@ -82,12 +85,13 @@ ini_set('display_errors', 1);
 
         <ul class="sidenav" id="mobile-demo">
             <li><a href="Busqueda.html"><i class="material-icons">search</i>Busqueda</a></li>
-            <li><a href="Pago.html"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>
+            <li><a href="Pago.phpl"><i class="material-icons">shopping_cart</i> <span class="new badge" data-badge-caption="En carrito">1</span></div></a></li>
             <li><a href="Login.php" title="Cerrar Sesion"><i class="material-icons">perm_identity</i> Iniciar Sesion </a></li>
             <li><a href="cerrar.php" title="Cerrar Sesion"><i class="material-icons">power_settings_new</i> Cerrar Sesion </a></li>
         </ul>
 
     </nav>
+    <br><br><br><br>
 </header>
 <script>
     document.addEventListener('DOMContentLoaded', function() {

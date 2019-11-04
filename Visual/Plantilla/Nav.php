@@ -7,7 +7,7 @@
                 <i class="large material-icons">account_circle</i>
                 <a href="Perfil.php"><span class="black-text name"> Nombre: </span><?php print_r($_SESSION['nombre']) ?></a>
 
-                <a href="Perfil.php"><span class="black-text name"> Correo: </span><?php print_r($_SESSION['correo']) ?></a>
+                <a href="Perfil.php"><span class="black-text name"> Correo: </span><?php print_r($_SESSION['correo_electronico']) ?></a>
 
             </div></li>
         <li><a href="index.php" title="VeterinariaOnline"><i class="material-icons">cloud</i>Inicio</a></li>

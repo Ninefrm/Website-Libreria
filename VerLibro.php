@@ -29,6 +29,7 @@ if(!$libro){
 
 ?>
 <?php include 'Visual/Plantilla/Header.php'; ?>
+
 <section class="main">
     <div class="container">
         <?php foreach ($libro as $Sql): ?>

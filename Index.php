@@ -18,11 +18,12 @@ $libro = $conn -> prepare("
 $libro ->execute();
 $libro = $libro ->fetchAll();
 ?>
+
 <?php include 'Visual/Plantilla/Header.php'; ?>
 <div class="container">
 
     <style>
-        div p {
+        div.part1 p {
             background-color: rgba(255,255,255,.8);
             display: block;
             position: absolute;
@@ -40,7 +41,7 @@ $libro = $libro ->fetchAll();
         </div>
     </div>
     <article>
-        <div class="carousel">
+        <div class="carousel part1">
             <?php foreach ($libro as $Sql): ?>
                 <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
             <?php endforeach; ?>
@@ -55,7 +56,7 @@ $libro = $libro ->fetchAll();
         </div>
     </div>
     <article>
-        <div class="carousel">
+        <div class="carousel part1">
             <?php foreach ($libro as $Sql): ?>
                 <?php echo "<a class='carousel-item' href='VerLibro.php?id=".$Sql['id']."'><img src='Upload/Libros/".$Sql['imagen']."'><p>". $Sql['nombre_libro'] ."<br>Precio: $". $Sql['costo']."</p></a>"; ?>
             <?php endforeach; ?>
@@ -67,9 +68,9 @@ $libro = $libro ->fetchAll();
 
 
 
+<?php include 'Visual/Plantilla/PieDePagina.php'; ?>
 
 </body>
 
-<?php include 'Visual/Plantilla/PieDePagina.php'; ?>
 </html>
 
