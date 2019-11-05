@@ -12,7 +12,11 @@ $dsn_Options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION];
 //
 
 //POST
-$busqueda = $_POST['busqueda'];
+if(!empty($_POST['busqueda'])){
+    $busqueda = $_POST['busqueda'];
+}else{
+    $busqueda = '';
+}
 
 try {
     $my_Db_Connection = new PDO($sql, $username, $password, $dsn_Options);
@@ -52,7 +56,7 @@ Echo "<form action=\"Buscar.php\" method=\"post\" id=\"mainform\">
     </thead>
         <?php
         $libros = $conn -> prepare("
-	        SELECT * FROM libro WHERE activo = '1' AND nombre_libro = '$busqueda'");
+	        SELECT * FROM libro WHERE activo = '1' AND MATCH (nombre_libro, sinopsis, ISBN) AGAINST ('$busqueda')");
 //Libro
         $libros ->execute();
         $libros = $libros ->fetchAll();

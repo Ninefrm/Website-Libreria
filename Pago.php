@@ -148,9 +148,9 @@ $cantidad = count($carrito);
             <div class="input-field col s6">
                 <select name="envio">
                     <option value="" disabled selected>Elegir opción</option>
-                    <option value="DHL">DHL</option>
-                    <option value="FEDEX">FEDEX</option>
-                    <option value="UPS">UPS</option>
+                    <option value="DHL">DHL EXPRESS (3 días) - $99</option>
+                    <option value="FEDEX">FEDEX (5 días) - $50</option>
+                    <option value="UPS">UPS (7 días habiles) - GRATIS</option>
                 </select>
                 <label>Metodo de Envio</label>
             </div>

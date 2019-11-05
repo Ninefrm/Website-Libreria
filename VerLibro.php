@@ -42,11 +42,29 @@ if(!$libro){
             ?>
         </div>
             <div class="col s6 right">
-                <form action="AgregarCompra.php" method="post" id="mainform">
-                    <td><input type="hidden" name="id_libro" value="<?php echo  $Sql['id']; ?>" type="text"></td>
-                    <button class="waves-effect waves-light btn-small green" type="submit" form="mainform" value="Submit"><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</button>
+                <?php
+                if(!empty($_SESSION['id'])){
+                    $id = $Sql['id'];
+                    ECHO "
+                    <form action=\"AgregarCompra.php\" method=\"post\" id=\"mainform\">
+                        <td><input type=\"hidden\" name=\"id_libro\" value=\"$id\" type=\"text\"></td>
+                    <button class=\"waves-effect waves-light btn-small green\" type=\"submit\" form=\"mainform\" value=\"Submit\"><i class=\"material-icons left\">add_shopping_cart</i>Agregar al carrito</button>
                 </form>
+                    ";
+                }else{
+                    ECHO "
+                    <form action=\"AgregarCompra.php\" method=\"post\" id=\"mainform\">
+                        <td><input type=\"hidden\" name=\"id_libro\" value=\"\" type=\"text\"></td>
+                    <button class=\"waves-effect waves-light btn-small green disabled\" type=\"submit\" form=\"mainform\" value=\"Submit\"><i class=\"material-icons left\">add_shopping_cart</i>INCIA SESIÓN PARA PODER COMPRAR</button>
+                </form>
+                    ";
+                }
+                ?>
 
+<!--                <form action="AgregarCompra.php" method="post" id="mainform">-->
+<!--                    <td><input type="hidden" name="id_libro" value="--><?php //echo  $Sql['id']; ?><!--" type="text"></td>-->
+<!--                    <button class="waves-effect waves-light btn-small green" type="submit" form="mainform" value="Submit"><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</button>-->
+<!--                </form>-->
 <!--                <form class="waves-effect waves-light btn-small red" action="foo.php" method="post""><i class="material-icons left">add_shopping_cart</i>Agregar al carrito</form>-->
             </div>
             <div class="row">

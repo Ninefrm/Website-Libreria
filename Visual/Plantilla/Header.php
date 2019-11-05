@@ -49,7 +49,7 @@ else{
 <head>
     <meta charset="UTF-8">
     <title>Libreria</title>
-    <link rel="stylesheet" href="CSS/materialize.css">
+    <link rel="stylesheet" href="css/materialize.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!--    <link rel="stylesheet" href="CSS/Estilos.css">-->
@@ -60,7 +60,7 @@ else{
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!--Import materialize.css-->
     <script src="js/materialize.min.js"></script>
-    <link type="text/CSS" rel="stylesheet" href="CSS/materialize.min.css"  media="screen,projection"/>
+    <link type="text/CSS" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
@@ -75,14 +75,24 @@ else{
     <ul id="dropdown1" class="dropdown-content">
 
         <?php
-        if($_SESSION['tipo'] == "Administrador"){
-            Echo "<li><a href=\"AgregarLibro.php\" title=\"Agregar Libro\"><i class=\"material-icons\">library_add</i>Agregar Libros</span></div></a></li>
+        if(!empty($_SESSION['id'])){
+            ECHO "<li class=\"divider\"></li>
+            <li><a href=\"VerCompras.php\"><i class=\"material-icons\">store</i>Compras</a></li>
+            <li class=\"divider\"></li>
+            ";
+            if($_SESSION['tipo'] == "Administrador"){
+                Echo "<li><a href=\"AgregarLibro.php\" title=\"Agregar Libro\"><i class=\"material-icons\">library_add</i>Agregar Libros</span></div></a></li>
+        ";
+            }
+        }else{
+            Echo "<li><a href=\"RegistroCliente.php\" title=\"Nuevo cliente\"><i class=\"material-icons\">assignment_ind</i>Nuevo cliente</span></div></a></li>
         ";
         }
+
         ?>
-        <li class="divider"></li>
-        <li><a href="VerCompras.php"><i class="material-icons">store</i>Compras</a></li>
-        <li class="divider"></li>
+<!--        <li class="divider"></li>-->
+<!--        <li><a href="VerCompras.php"><i class="material-icons">store</i>Compras</a></li>-->
+<!--        <li class="divider"></li>-->
         <?php
         if (!empty($_SESSION['id'])){
             Echo "<li><a href=\"cerrar.php\" title=\"Cerrar Sesion\"><i class=\"material-icons\">power_settings_new</i>Cerrar Sesion</span></div></a></li>
@@ -128,7 +138,7 @@ else{
                             Echo "<form action=\"Buscar.php\" method=\"post\" id=\"mainform2\">
                                 <div class=\"input-field inline\">
                                     <input name=\"busqueda\" id=\"busqueda\" type=\"text\" class=\"validate\">
-                                    <label for=\"busqueda\">Buscar</label>
+                                    <label for=\"busqueda\">Nombre, sinopsis, ISBN.</label>
                                 </div>
                                 <form action=\"Buscar.php\" method=\"post\" id=\"mainform2\">
                                     <button class=\"btn-floating btn-large waves-effect waves-light blue\" type=\"submit\" form=\"mainform\"><i class=\"material-icons\">search</i></button>
@@ -160,8 +170,25 @@ else{
         </nav>
 
         <ul class="sidenav" id="mobile-demo">
-            <li><a href="Busqueda.php"><i class="material-icons">search</i>Busqueda</a></li>
-            <li><a href="VerCompras.php"><i class="material-icons">store</i>Compras</a></li>
+            <li><a href="Buscar.php"><i class="material-icons">search</i>Buscador</a></li>
+
+            <?php
+            if(!empty($_SESSION['id'])){
+                ECHO "<li class=\"divider\"></li>
+            <li><a href=\"VerCompras.php\"><i class=\"material-icons\">store</i>Compras</a></li>
+            <li class=\"divider\"></li>
+            ";
+                if($_SESSION['tipo'] == "Administrador"){
+                    Echo "<li><a href=\"AgregarLibro.php\" title=\"Agregar Libro\"><i class=\"material-icons\">library_add</i>Agregar Libros</span></div></a></li>
+        ";
+                }
+            }else{
+                Echo "<li><a href=\"RegistroCliente.php\" title=\"Nuevo cliente\"><i class=\"material-icons\">assignment_ind</i>Nuevo cliente</span></div></a></li>
+        ";
+            }
+
+            ?>
+
             <?php
             if (!empty($_SESSION['id'])){
                 Echo "<li><a href=\"Pago.php\"><i class=\"material-icons\">shopping_cart</i><span class=\"new badge green\" data-badge-caption=\"En carrito\">$suma</span></div></a></li>

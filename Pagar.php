@@ -70,6 +70,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $update = $conn->prepare("UPDATE carro SET activo = '0' WHERE id_cliente = $id_cliente");
     $update->execute();
 
+    $updateL = $conn->prepare("UPDATE libro SET vendidos = vendidos+1, cantidad=cantidad-1 WHERE id = $id_libro");
+    $updateL->execute();
 
 
 

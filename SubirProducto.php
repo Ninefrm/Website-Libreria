@@ -102,3 +102,6 @@ if (file($tmpName)) {
 }
 
 ?>
+<script>
+    window.location.replace("Index.php");
+</script>
