@@ -139,7 +139,7 @@ $cantidad = count($carrito);
             <div class="input-field col s6">
                 <select name="pago">
                     <option value="" disabled selected>Elegir opción</option>
-                    <option value="1">DEFAULT: <?php $str = strtoupper($pago); echo  $str; ?></option>
+                    <option value="<?php $str = strtoupper($pago); echo  $str; ?>">DEFAULT: <?php $str = strtoupper($pago); echo  $str; ?></option>
                     <option value="EFECTIVO">EFECTIVO</option>
                     <option value="DEBITO">DEBITO</option>
                 </select>

@@ -68,7 +68,7 @@ if (file($tmpName)) {
                 echo 'Connection error: ' . $error->getMessage();
             }
             //
-            $my_Insert_Statement = $my_Db_Connection->prepare(
+                $my_Insert_Statement = $my_Db_Connection->prepare(
                 "INSERT INTO libro VALUES
 (null,:nombre_libro,:autor, :sinopsis, :costo,:ano_de_publicacion,:pais_de_publicacion,:editorial,:numero_de_edicion,:ano_de_edicion,:numero_de_paginas,:genero,:cantidad,:calificacion,
                 :ISBN,:vendidos,:imagen,'1')");

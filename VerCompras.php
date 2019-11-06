@@ -19,11 +19,11 @@ $tipo = $_SESSION['tipo'];
 //echo $_SESSION['tipo'];
 if($tipo == "Cliente"){
     $venta = $conn -> prepare("
-	SELECT * FROM venta WHERE activo = '1' AND id_cliente = $id_usr");
+	SELECT * FROM venta WHERE id_cliente = $id_usr");
 }
 if($tipo == "Administrador"){
     $venta = $conn -> prepare("
-	SELECT * FROM venta WHERE activo = '1' ");
+	SELECT * FROM venta ORDER BY id_cliente");
 }
 
 //Libro
@@ -53,15 +53,16 @@ $venta = $venta ->fetchAll();
             ?>
             <th>GUIA DE ENVIO</th>
             <th>PRECIO</th>
-            <th colspan="1">ACCIONES</th>
+            <th colspan="3">ACCIONES</th>
 
         </tr>
         </thead>
-        <?php foreach ($venta as $Sql): ?>
+        <?php foreach ($venta as $Sql): $id_cliente = $Sql['id_cliente'];
+            $id_venta = $Sql['id'];?>
             <?php
 //        echo
+
             $id_libro = $Sql['id_libro'];
-            $id_cliente = $Sql['id_cliente'];
             $libros = $conn -> prepare("
 	SELECT * FROM libro WHERE activo = '1' AND id = $id_libro");
 //Libro
@@ -69,6 +70,7 @@ $venta = $venta ->fetchAll();
             $libros = $libros ->fetchAll();
 //            echo $Total = count($libros);
             foreach ($libros as $SqlLibro):
+
                 ?>
                 <tr>
                     <?php $str = strtoupper($SqlLibro['nombre_libro']); echo "<td>". $str ."</td>"; ?>
@@ -80,7 +82,40 @@ $venta = $venta ->fetchAll();
                     <?php echo "<td>". $Sql['guia_de_envio'] ."</td>"; ?>
                     <?php echo "<td> $". $SqlLibro['costo'] ."</td>"; ?>
                     <?php $total = $total + $SqlLibro['costo'];?>
-                    <?php echo "<td class='centrar'>"."<a href='VerLibro.php?id=".$SqlLibro['id']."' class='large material-icons'>visibility</a>". "</td>"; ?>
+                    <?php echo "<td>
+                                <form action='VerLibro.php' method='get'>
+                                <button class='btn waves-effect waves-light blue' type='submit' name='id' value='$id_libro'>
+                                <i class='material-icons'>visibility</i>
+                                </button>
+                                </form></td>"; ?>
+
+                    <?php
+                    if($Sql['activo']==1) {
+
+                        ECHO "<td>
+                                <button class=\"waves-effect waves-light btn-small red\"><i class=\"material-icons\">announcement</i></button>
+                                </td>";
+                    }if($Sql['activo']==2){
+                        ECHO "<td>
+                                <button class=\"waves-effect waves-light btn-small yellow\"><i class=\"material-icons\">send</i></button>
+                                </td>";
+
+                    }if($Sql['activo']==3){
+                        ECHO "<td>
+                                <button class=\"waves-effect waves-light btn-small green\"><i class=\"material-icons\">check</i></button>
+                                </td>";
+                    }?>
+                    <?php if($_SESSION['tipo']=="Administrador"){
+//                        echo $id_cliente;
+//                        $id_venta = $Sql['id_venta'];
+                        echo "<td>
+                                <form action='EditarPago.php' method='post'>
+                                <button class='btn waves-effect waves-light blue' type='submit' name='id' value='$id_venta'>
+                                <i class='material-icons'>create</i>
+                                </button>
+                                </form></td>";
+                    }
+                    ?>
                 </tr>
             <?php endforeach; ?>
         <?php endforeach; ?>

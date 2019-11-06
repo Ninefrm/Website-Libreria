@@ -46,8 +46,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     foreach ($carrito as $SQLCarrito):
         $id_libro = $SQLCarrito['id_libro'];
 
-
-    $guia_de_envio = $metodo_de_envio . $id_cliente . $id_libro;
+        echo date_default_timezone_set('Australia/Melbourne');
+        $date = substr(date('m/d/Y h:i:s a', time()), -5);
+        $guia_de_envio = $metodo_de_envio . $id_cliente . $id_libro . $date;
 
     $my_Insert_Statement = $conn->prepare(
         "INSERT INTO venta VALUES

@@ -35,7 +35,7 @@ if(empty($_SESSION['id'])){
 
 }else{
     $libros = $conn -> prepare("
-	SELECT * FROM venta WHERE activo = '1' AND id_cliente = $id_usr ORDER BY id desc");
+	SELECT * FROM venta WHERE id_cliente = $id_usr ORDER BY id desc");
     $id_usr = $_SESSION['id'];
     $libros ->execute();
     $ultimo_libro = $libros ->fetchColumn(2);
