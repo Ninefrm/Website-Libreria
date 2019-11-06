@@ -63,7 +63,6 @@ $venta = $venta ->fetchAll();
                     <?php echo "<td> $". $libros['costo'] ."</td>"; ?>
                     <?php $total = $total + $libros['costo'];?>
                     <?php echo "<td class='centrar'>"."<a href='VerLibro.php?id=".$libros['id']."' class='large material-icons'>visibility</a>". "</td>"; ?>
-                    <?php echo "<td class='centrar'>"."<a href='NoComprar.php?id=".$libros['id']."' class='large material-icons'>delete_forever</a>". "</td>"; ?>
                 </tr>
             <?php endforeach; ?>
         <?php endforeach; ?>

@@ -41,6 +41,25 @@ if(!$libro){
                     </div>";
             ?>
         </div>
+
+        <div class="col s6 left">
+            <?php
+            if(!empty($_SESSION['tipo'])){
+                if($_SESSION['tipo']=="Administrador"){
+                    $id = $Sql['id'];
+                    ECHO "
+                <form action=\"EditarLibro.php\" method=\"post\" id=\"EditarLibro\">
+                        <td><input type=\"hidden\" name=\"id_libro\" value=\"$id\" type=\"text\"></td>
+                    <button class=\"waves-effect waves-light btn-small yellow\" type=\"submit\" form=\"EditarLibro\" value=\"Submit\"><i class=\"material-icons\">edit</i>Editar libro</button>
+                </form>";
+                }
+                
+            }else{
+
+            }
+            ?>
+        </div>
+
             <div class="col s6 right">
                 <?php
                 if(!empty($_SESSION['id'])){

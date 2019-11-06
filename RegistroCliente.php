@@ -8,7 +8,7 @@
             </div>
         </div>
     </div>
-    <form action="NuevoUsuario.php" method="post" name="NuevoUsuario" enctype="multipart/form-data">
+    <form action="NuevoUsuario.php" method="post" name="NuevoUsuario" enctype="multipart/form-data" id="NuevoUsuario">
         <table width="500" border="0" cellpadding="5" cellspacing="5">
             <tr>
                 <th>Nombre del cliente:</th>
@@ -58,10 +58,12 @@
                 <th>Metodo de pago:</th>
                 <td><input name="metodo_de_pago" type="text"></td>
             </tr>
-            <tr>
-                <td colspan="2" style="text-align:center;"><input type="submit" name="Submit" value="Send"><input type="reset" name="Reset" value="Reset"></td>
-            </tr>
         </table>
+        <form action="NuevoUsuario.php" method="post" id="NuevoUsuario">
+            <button class="waves-effect waves-light btn-small blue right" type="submit" form="NuevoUsuario" value="Submit"><i class="material-icons left">account_box</i>Registrarse</button>
+            <button class="waves-effect waves-light btn-small red" type="reset" form="NuevoUsuario" value="Submit"><i class="material-icons right">delete</i>Limpiar formulario</button>
+        </form>
+
     </form>
 
 </div>
