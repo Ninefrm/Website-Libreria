@@ -49,10 +49,10 @@
                     <li><a href="Buscar.php"><i class="material-icons">search</i> </a></li>
 
                     <?php
-                    $servername = "localhost";
-                    $username = "ninefrmx_root";
-                    $password = "Samuel20";
-                    $mydb = "ninefrmx_libreria";
+                        $servername = "localhost";
+                        $username = "root";
+                        $password = "";
+                        $mydb = "ninefrmx_libreria";
 
                     try{
                         $conn = new PDO("mysql:host=$servername;dbname=$mydb", $username, $password);

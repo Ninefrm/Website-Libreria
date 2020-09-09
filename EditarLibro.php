@@ -3,8 +3,8 @@
     $id_Libro = $_POST['id_libro'];
 //Servidor
 $servername = "localhost";
-$username = "ninefrmx_root";
-$password = "Samuel20";
+$username = "root";
+$password = "";
 $mydb = "ninefrmx_libreria";
 
 $sql = "mysql:host=$servername;dbname=$mydb;";

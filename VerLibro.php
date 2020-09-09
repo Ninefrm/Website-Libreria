@@ -2,8 +2,8 @@
 <body>
 <?php
 $servername = "localhost";
-$username = "ninefrmx_root";
-$password = "Samuel20";
+$username = "root";
+$password = "";
 $mydb = "ninefrmx_libreria";
 
 try{
